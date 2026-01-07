@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html form</title>
+</head>
+<body>
+    <h2>회원가입 form 태그 예제</h2>
+
+    <!-- action에는 form태그 안에 input박스의 데이터들이 전송될 서버의 url주소 -->
+    <!-- form태그의 인코딩타입 : 1)url인코딩방식(텍스트만0) 2)multipart/form-data 방식(이미지포함) -->
+    <!-- url인코딩과 form-data 형식 : name="hong"&email="hong@naver.com"&password="1234"&... -->
+    <!-- json형식은 순수html만으로 불가하고 js를 통해 조립 -->
+    <!-- json형식 : {name:"hong", email:"hong@naver.com", password:"1234"} -->
+    <form action="https://naver.com" method="post" enctype="multipart/form-data"> 
+        <div>
+            <!-- label for구문은 input박스의 id값을 찾아 매핑 -->
+            <!-- name은 키이기 때문에 필수, id는 필수는 아님 -->
+            <label for="userName"> 이름 : </label>
+            <input type="text" id="userName" name = "name">
+        </div>
+        <div>
+            email : <input type="email" name = "email">
+        </div>
+        <div>
+            password : <input type="password" name = "password">
+        </div>
+        <div>
+            <!-- size : input박스의 크기, maxlength : 입력가능글자수제한 -->
+            <!-- readonly : 수정불가(서버로전송), disabled : 수정불가(서버로전송x) -->
+            주소 : <input type="text" name ="adress" size="40" maxlength="10" readonly>
+        </div>
+        <div>
+            <!-- email="hong@naver.com"&gender=male"... 형태로 서버로 전송 -->
+            성별 : 
+            <input type="radio" name="gender" value="male">남성
+            <input type="radio" name="gender" value="female" checked>여성
+        </div>
+
+        <div>
+            관심사항 : 
+            <!-- 체크박스의 경우 키=[v1, v2, ...] -->
+            <input type="checkbox" name="interest" value="sports">스포츠
+            <input type="checkbox" name="interest" value="music">음악
+            <input type="checkbox" name="interest" value="reading">독서
+        </div>
+
+        <div>
+            생년월일 : <input type="datetime-local">
+        </div>
+
+        <div>
+            나이 : <input type="number" name="age" value="20">
+        </div>
+
+        <div>
+            유저선택 : 
+            <select name="role">
+                <option value ="admin">관리자</option>
+                <option value ="admin">일반유저</option>
+                <option value ="admin">방문자</option>
+            </select>
+        </div>
+        <div>
+            <!-- accept = "image/*" : 이미지만  -->
+            증명사진 : <input type="file" name="profile_image" accept="image/*">
+        </div>
+        <div>
+            자기소개 :
+            <textarea name="resume" rows="5" cols="30" placeholder="자기소개를 입력해주세요."></textarea>
+        </div>
+        <div>
+            <!-- form태그에서 제출방법 2가지 1)input태그 2)button태그(더많이씀) -->
+            <input type="submit" value="제출">
+            <button type="submit">제출</button>
+        </div>
+    </form>
+      </body>
+</html>
