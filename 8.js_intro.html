@@ -17,7 +17,6 @@
             // 팝업함수. 확인버튼을 누르기 전까지 이후 코드가 실행안되는 특징.
             alert(a+b);
             console.log(a+c); //30
-
         }
         function console2(){
             // js의 배열은 []를 사용. 문자,숫자 등 하나의 타입이 아닌 여러 타입사용가능.
@@ -33,7 +32,7 @@
             // 10,20,30,40의 배열을 선언하고 total을 만들어서 출력하기
             let arr2 = [10,20,30,40];
             let total = 0;
-            for(let i=0; i<arr.length; i++){
+            for(let i=0; i<arr2.length; i++){
                 total+=arr2[i];
             }
             console.log(total);
@@ -51,8 +50,8 @@
         }
         function letExample(){
             let a = 10;
-            a=20; // 재할당 가능
-            // let a = 30; //재선언은 불가능
+            a=20; // 재할당 가능 ★
+            // let a = 30; //재선언은 불가능 ★
             console.log(a);
         }
         function constExample(){
@@ -66,7 +65,7 @@
 <body>
     <h2>js 변수와 출력</h2>
     <button onclick="console1()">console에 변수 출력하기</button>
-    <button onclick="console2()">console에 변수 출력하기</button>
+    <button onclick="console2()">console2에 변수 출력하기</button>
     <button onclick="arrFunction()">배열안에 함수를 실행</button>
 
     <h2>js 변수 선언 키워드(var,let,const)</h2>

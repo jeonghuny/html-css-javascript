@@ -12,23 +12,23 @@
         function compareString(){
             const st1 = "abc";
             const st2 = "bcd";
-            console.log(st1<st2);
+            console.log(st1 > st2);
         } 
         function convertType(){
-            // let st1 = "10";
-            // let st2 = "hello";
-            // let num1 = Number(st1);
-            // console.log(typeof num1);
-            // num1 = String(num1);
-            // console.log(typeof num1);
-            // let num2 = Number(st2);
-            // console.log(num2); // Nan(Not a number)가 담김
+            let st1 = "10";
+            let st2 = "hello";
+            let num1 = Number(st1);
+            console.log(typeof num1);
+            num1 = String(num1);
+            console.log(typeof num1);
+            let num2 = Number(st2);
+            console.log(num2); // Nan(Not a number)가 담김
             
             // ==은 타입은 체크하지 않음. ===타입까지 체크 (★★★)
-            // console.log(10==10); // true;
-            // console.log(10===10) ; // true;
-            // console.log(10=='10'); // true; - 모양만 검사 (==)
-            // console.log(10==='10'); //★ false; - type까지 검사 (===)
+            console.log(10==10); // true; (값만 체크)
+            console.log(10===10) ; // true;
+            console.log(10=='10'); // true; - 모양만 검사 (==)
+            console.log(10==='10'); //★ false; - type까지 검사 (===)
 
             let v1; // undefined가 할당
             let v2 = null; // null이 할당
@@ -64,8 +64,8 @@
             // HTML에 요소는 기본이 문자값
             const first = document.getElementById("first").value; // -> 기본적으로 문자로 가져오게 됨.
             const second = document.getElementById("second").value;
-            const fistNumber = Number(first);
             const secondNumber = Number(second);
+            const fistNumber = Number(first);
             // if(typeof firstNumber == Number && typeof secondNumber == Number){
             //     alert("숫자를 입력해주세요");
             // }

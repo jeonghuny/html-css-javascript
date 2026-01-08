@@ -8,28 +8,28 @@
         function makeObject(){
             // js의 객체는 클래스를 정의하지 않고, 생성.
             // 객체생성방법1. 리터럴 방식으로 생성
-            // 객체접근 : . 이나 [] 로 접근 가능
-            // let person1 = {id:1, name:"hong1", email:"hong@naver.com", age:30}; //js에서 {}가 객체
-            // console.log(person1);
-            // person1.name="hong2";
-            // person1['email']='hong2@naver.com'; // '', "" 둘다 똑같은 문자열-> 둘다됨.
-            // person1.password="1234";
-            // console.log(person1);
+            // 객체접근 : . 이나 [] 로 접근 가능  // js에서는 key값에 " " 두루지 않는다 , json에선 key값에 " " 두룬다.
+            let person1 = {id:1, name:"hong1", email:"hong@naver.com", age:30}; //js에서 {}가 객체
+            console.log(person1);
+            person1.name="hong2";
+            person1['email']='hong2@naver.com'; // '', "" 둘다 똑같은 문자열-> 둘다됨.
+            person1.password="1234";
+            console.log(person1);
 
-            // // 객체생성방법2. 단축속성명 방식 : key와 value값이 동일하게 사용될때 간편하게 객체 생성
-            // const name="hong3"; // let name = ?(보통은 변수에는 let 쓰고, 객체에는 const 씀)
-            // const age="30";
-            // const person2 = {name:name, age:age}; // 일반객체생성
-            // const person3 = {name, age}; // 단축속성명방식
-            // console.log(person2);
+            // 객체생성방법2. 단축속성명 방식 : key와 value값이 동일하게 사용될때 간편하게 객체 생성
+            const name="hong3"; // let name = ?(보통은 변수에는 let 쓰고, 객체에는 const 씀)
+            const age="30";
+            const person2 = {name:name, age:age}; // 일반객체생성
+            const person3 = {name, age}; // 단축속성명방식
+            console.log(person2);
 
             // const obj1 = {key1:"value1", key2:"value2", key3:{a:1,b:2}};
             // const obj2 = {obj1}; // {obj1 = {key1:"value1", key2:"value2", key3:{a:1,b:2}}};
-            // console.log(obj2);
+            console.log(obj2);
 
             // 스프레드 문법 : 객체, 배열의 요소값을 모두 꺼내오는 문법
             const obj1 = {a:1, b:2};
-            const obj2 = {...obj1,c:3};
+            const obj2 = {...obj1, c:3};
             console.log(obj2);
             
             const arr1 = [1,2,3];
@@ -38,6 +38,7 @@
         }
         function getObject(){
             const p1 = {name:"hong", email:"hong@naver.com", age:30};
+            const p2 = {name:"hong", email:"hong@naver.com", age:30};
 
             //객체전체 조회
             console.log(p1);
@@ -46,7 +47,7 @@
             // 객체 개별요소 접근2
             console.log(p1['name']);
 
-            // Object.keys(객체명) : 객체의 키를 배열형태로 반환
+            // Object.keys(객체명) : 객체의 키를 배열형태로 반환 ★
             const arr = Object.keys(p1);
             for(let i=0; i<arr.length; i++){
                 p1[arr[i]] = 10;
@@ -57,39 +58,38 @@
             // js에서는 배열 크기 변화 가능
             let fruit = ['사과','배','바나나'];
             // 배열요소추가 : push
-            // fruit.push('포도');
-            // console.log(fruit);
+            fruit.push('포도');
+            console.log(fruit);
             
-            // // 배열요소꺼내기 : pop
-            // console.log(fruit.pop());
-            // console.log(fruit);
+            // 배열요소꺼내기 : pop
+            console.log(fruit.pop());
+            console.log(fruit);
 
-            // // 배열의 접근 : 배열명[index]
-            // console.log(fruit[0]);
-            // // 배열의 수정
-            // fruits[0]="오렌지";
+            // 배열의 접근 : 배열명[index]
+            console.log(fruit[0]);
+            // 배열의 수정
+            fruit[0]="오렌지";
             
-            //함수형 프로그래밍 : forEach, map, filter
+            // 함수형 프로그래밍 : forEach, map, filter
             const nums = [1,2,3,4,5,6];
             nums.forEach(a=>console.log(a));
-            const newNums1 = nums.map(a=>a*a);
+            const newNums1 = nums.map(a=>a*a); // 변환
             console.log(newNums1);
-            const newNums2 = nums.filter(a=>a%2==0);
+            const newNums2 = nums.filter(a=>a%2==0); // 조건
             console.log(newNums2);
         }
         function makeObjectArr(){
             let arr = [{name:'h1', age:20},{name:'h2', age:30},{name:'h3', age:40}]
             // 모든 객체에 email : test@naver.com을 추가
-            // 방법1.
+            // 방법1. // arr 자체가 바뀜
             for(let i=0; i<arr.length; i++){
                 arr[i].email = "test@naver.com";
                 // arr[i].['email'] = "test@naver.com";
                 // arr[i] = {...arr[i], email:"test@naver.com"};
             }
-            // 방법2.
+            // 방법2. // map+spread (원본유지), return 있어야 newArr에 값이 들어감 
             const newArr = arr.map(a=>{return {...a, email:"test@naver.com"}});
-            console.log(newArr);
-        
+            console.log(newArr);     
         }
     </script>
 </head>

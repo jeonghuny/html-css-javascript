@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js json</title>
+    <script>
+        function parsing1(){ 
+            // json으로 받아올때 형식 "key", value : 문자면 " "
+            // js에서는 ''와 "" 둘다 쓸수 있어서 아래와 같이 씀
+            // (JSON은 문자열(string) 이라서 전체를 따옴표로 감싸야 함)
+            const jsonData = '{"id":1,"name":"hong1","email":"hong@naver.com"}';
+            const obj1 = JSON.parse(jsonData); // JSON 문자열 → JS 객체(Object) 로 변환
+            console.log(obj1);
+            console.log(typeof obj1);
+        }
+        function stringify(){
+            const obj1 = {id:1, name:"hong", email:"hong@naver.com"};
+            const jsonData = JSON.stringify(obj1);
+            console.log(obj1);
+            console.log(jsonData);
+        }
+        function parsing2(){
+            const jsonData = '{"id":1,"name":"hong1","email":"hong@naver.com"}';
+            const obj1 = JSON.parse(jsonData);
+            document.getElementById("id").innerHTML = obj1.id;
+            document.getElementById("name").innerHTML = obj1.name;
+            document.getElementById("email").innerHTML = obj1['email']; // 이것도 가능
+        }
+        function addHtml(){
+            let div1 = document.getElementById("target");
+            div1.innerHTML += '<input type="text"><br>';
+        }
+        function parsing3(){
+            // json data  선언 : [{}, {}, ...]
+            const jsonDataArr = 
+            ['{"id":1, "name":"hong1","email":"hong@naver.com"}',
+            '{"id":2, "name":"hong2","email":"hong2@naver.com"}',
+            '{"id":3, "name":"hong3","email":"hong3@naver.com"}',
+            '{"id":4, "name":"hong4","email":"hong4@naver.com"}'];
+
+            const jsonDataArr3 = `[{"id":1, "name":"hong1","email":"hong@naver.com"}, 
+            {"id":2, "name":"hong2","email":"hong2@naver.com"}]`;
+
+            // 강사님꺼
+            const jsonDataArr2 = '[{"id":1, "name":"hong1","email":"hong@naver.com"}, {"id":2, "name":"hong2","email":"hong2@naver.com"}]';
+            // json data를 객체로 파싱
+            let obj = [];
+            for(let i=0; i<jsonDataArr.length; i++){
+                obj[i] = JSON.parse(jsonDataArr[i]);
+            }
+
+            const obj2 = JSON.parse(jsonDataArr2);
+            // for문을 통해 html 동적으로 세팅
+            for(let i=0; i<jsonDataArr.length; i++){
+                const html = "<tr><td>" + obj[i].id + "</td>" +"<td>" + obj[i].name 
+                    + "<td>" + obj[i].email + "</td></tr>";
+                document.getElementById("tbodyId").innerHTML += html;
+            }
+
+            for(let i=0; i<jsonDataArr3.length; i++){
+                const html = "<tr><td>" + obj2[i].id + "</td>" +"<td>" + obj2[i].name 
+                    + "<td>" + obj2[i].email + "</td></tr>";
+                document.getElementById("tbodyId").innerHTML += html;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>json 처리 기본</h2>
+    <button onclick="parsing1()">json 데이터 파싱</button>
+    <button onclick="stringify()">json 데이터 생성(직렬화)</button>
+
+    <h2>테이블 데이터</h2>
+    <button onclick="parsing2()">테이블 데이터 파싱</button>
+    <table border="1" style="border-collapse: collapse;">
+        <thead>
+            <tr><th>ID</th><th>이름</th><th>이메일</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="id"></td>
+                <td id="name"></td>
+                <td id="email"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>html요소 동적으로 세팅</h2>
+    <button onclick="addHtml()">항목추가</button>
+    <div id = "target">
+        <input type="text">
+    </div>
+
+    <h2>n개의 데이터 테이블에 세팅</h2>
+    <button onclick="parsing3()">json 데이터 파싱3</button>
+    <button onclick="stringify()">json 데이터 생성(직렬화)</button>
+
+    <h2>테이블 데이터</h2>
+    <button onclick="parsing2()">테이블 데이터 파싱</button>
+    <table border="1" style="border-collapse: collapse;">
+        <thead>
+            <tr><th>ID</th><th>이름</th><th>이메일</th></tr>
+        </thead>
+        <tbody id="tbodyId">
+
+        </tbody>
+    </table>
+</body>
+</html>
+
+<!-- 
+1. 조회 
+- get
+- 파싱 parse
+- 테이블
+
+2. 등록
+- post
+- 직렬화 springify
+- form 태그 -> 방법 url인코딩, multipart, json(이게 일반적)
+
+json ex)
+<form> <button onclick = > 으로 보냄 
+  -->
