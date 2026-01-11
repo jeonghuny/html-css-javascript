@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <title>글쓰기</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <nav class="navbar bg-dark navbar-dark navbar-expand-lg">
+        <a href="../post/post_list.html" class="navbar-brand mx-auto">게시판 서비스</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="../author/author_list.html" class="nav-link">회원목록</a>
+            </li>
+            <li class="nav-item">
+                <a href="../post/post_list.html" class="nav-link">게시글목록</a>
+            </li>
+            <li class="nav-item">
+                <a href="../author/author_register.html" class="nav-link">회원가입</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h3>글쓰기</h3>
+        <!-- json은 form의 action 필요없음 -->
+        <form>
+            <div class="form-group">
+                <label for="title">제목</label><br>
+                <input class="form-control" type="text" id="title" >
+            </div>
+            <div class="form-group">
+                <label for="contents">내용</label><br>
+                <textarea class="form-control" id="contents" rows="10" cols="30" placeholder="내용을 입력해주세요."></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="dataCreate()">제출</button>
+        </form>
+    
+    <script>
+        async function dataCreate(){
+            // 빈번히 에러가 날수도 있는 서버api호출 부분을 try catch 처리
+            // 예외처리를 통해 성공하면 리다이렉트, 실패하면 팝업창을 통해 안내.
+            try{
+                const title = document.getElementById("title").value;
+                const contents = document.getElementById("contents").value;
+                // titile:title , 앞의 title은 서버에서 지정한 키값, 뒤에 title은 const로 선언한 title.
+                const data = {title:title, contents:contents}; // const data = {title, contents}; 도 가능
+                // axios의 post함수를 통해 js의 객체를 json으로 자동형변환
+                // (객체를 집어넣으면 axios가 json으로 만드는것 알아서 해줌)
+                // axios.post("url", 객체);
+                // 브라우저에서 axios 라이브러리를 사용해 AJAX 방식의 비동기 HTTP 통신을 구현”
+                await axios.post("http://ec2-13-125-177-147.ap-northeast-2.compute.amazonaws.com:8081/post/register1" , data);
+                window.location.href="http://kimdol.s3.ap-northeast-2.amazonaws.com/post_list.html";
+            }catch(error){
+                alert("예상치 못한 에러가 발생했습니다."); // 사용자 화면
+                console.log(error); // 개발자 확인용  
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+
+1.html로 데이터 조립
+url인코딩(또는 multipart/form-data)
+2. json
+json조립 : axios.post(url, 객체)
+url인코딩 : axios.post(url, FormData 객체)
+
+
+프론트엔트 여는 흐름
+내pc -> .html 오픈 -> 크롬으로 오픈 -> script에서 8081서버
+
+1 .서버를 내pc에서 실행안할 것 (서버 : aws), 컴퓨터 빌려주는 서비스 ec2
+2. front(.html) : aws에서는 파일만 갖다 놓는다?
+
+[ec2-컴퓨터]
+java, spring 실행 // 자바도 설치되어 있음
+
+[s3-스토리지] : 외장하드, usb같은
+여기에 html 파일을 갖다 놓는다 (s3에서는 파일의 url을 만들어준다.)
+
+크롬에서 html실행하면 s3에 파일 요청(aws컴퓨터에 이미 갖다놓은 상태에서)
+aws, s3에서 html 파일전송
+
+그 파일 안에는 <script>ec2의 주소</script> 있어서 
+ec2 주소로 데이터 요청 -> 그리고 데이터 받아와서 화면 완성!
+
+그래서 배포할 파일의 script에 ec의주소 넣어야 함.
+
+내pc를 원격포트 22로? 이건 무슨말?
+
+인바운드 -> 보안규칙 sg => 아무나 못들어옴
+아웃바운드 -> 다른 곳 접속할때 규칙 0 0 0 0 -> 어디든 접속가능
+
+class들의 압축파일 -> jar파일로 만듬
+
+컴파일 또는 빌드 -> 빌드 : 컴파일보다 큰 개념 , 실행가능하게끔 한다.
+
+http://ec2-13-125-177-147.ap-northeast-2.compute.amazonaws.com:8081/post/list
+
+<오류 났을 경우>
+power쉘로 ssh 접속 다시
+build/libs
+java -jar jar명
+
+-->

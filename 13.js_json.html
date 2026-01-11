@@ -54,11 +54,11 @@
             // for문을 통해 html 동적으로 세팅
             for(let i=0; i<jsonDataArr.length; i++){
                 const html = "<tr><td>" + obj[i].id + "</td>" +"<td>" + obj[i].name 
-                    + "<td>" + obj[i].email + "</td></tr>";
+                    + "</td>"+"<td>" + obj[i].email + "</td></tr>";
                 document.getElementById("tbodyId").innerHTML += html;
             }
 
-            for(let i=0; i<jsonDataArr3.length; i++){
+            for(let i=0; i<obj2.length; i++){
                 const html = "<tr><td>" + obj2[i].id + "</td>" +"<td>" + obj2[i].name 
                     + "<td>" + obj2[i].email + "</td></tr>";
                 document.getElementById("tbodyId").innerHTML += html;

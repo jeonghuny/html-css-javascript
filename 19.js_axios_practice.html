@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js axios practice</title>
+    <!-- 이거 가져오기 axios 쓸려면 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <button onclick="selectOne()">단건데이터 조회</button>
+    <button onclick="selectList()">리스트데이터 조회</button>
+    <script>
+        async function selectOne(){
+            const result1 = await axios.get("https://jsonplaceholder.typicode.com/posts/1");
+            console.log(result1.data);
+        }
+        async function selectList(){
+            const result2 = await axios.get("https://jsonplaceholder.typicode.com/posts");
+            console.log(result2.data);
+            console.log();
+        }
+    </script>
+</body>
+</html>

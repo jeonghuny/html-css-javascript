@@ -9,12 +9,11 @@
     <script>
         async function select(){
             const postId = document.getElementById("postId").value;
-            const result = await axios.get("https://jsonplaceholder.typicode.com/posts/"+postId);
+            const result = await axios.get("http://localhost:8081/post/detail/" + postId);
             const post = result.data;
             document.getElementById("id").innerHTML=post.id;
             document.getElementById("title").innerHTML=post.title;
-            document.getElementById("body").innerHTML=post.body;
-            document.getElementById("userId").innerHTML=post.userId;
+            document.getElementById("body").innerHTML=post.contents;
         }
     </script>
 </head>
@@ -45,9 +44,6 @@
             </tr>
             <tr>
                 <td>본문</td><td id="body"></td>
-            </tr>
-            <tr>
-                <td>USERID</td><td id="userId"></td>
             </tr>
         </table>
     </div>

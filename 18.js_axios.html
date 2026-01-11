@@ -8,16 +8,16 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script>
         // async는 함수전체가 비동기임을 의미
         async function dataRequest(){
             // await는 비동기함수 내에서 각 함수의 호출의 동기성을 보장하기 위한 키워드
             // axios는 서버api요청에서 가장 많이 사용하는 라이브러리
             // axios는 비동기함수이고, 서버응답json을 객체로 parsing
+            // result1는 바로 객체가 됨. http문서 전체가 객체가 됨.
             const result1 = await axios.get("https://jsonplaceholder.typicode.com/posts/1");
             console.log("result1");
-            // axios를 통해 body 데이터를 얻기위해서는 .data를 통해 객체 추출.
+            // axios를 통해 body 데이터를 얻기위해서는 .data를 통해 객체 추출 ★
             console.log(result1);
             console.log(result1.data);
             const result2 = await axios.get("https://jsonplaceholder.typicode.com/posts/1");

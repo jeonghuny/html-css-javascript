@@ -15,8 +15,7 @@
                 <a href="../author/author_list.html" class="nav-link">회원목록</a>
             </li>
             <li class="nav-item">
-                <!-- <a href="../post/post_list.html" class="nav-link">게시글목록</a> -->
-                 <a href="../post/post_list.html" class="nav-link">게시글목록</a>
+                <a href="../post/post_list.html" class="nav-link">게시글목록</a>
             </li>
             <li class="nav-item">
                 <a href="../author/author_register.html" class="nav-link">회원가입</a>
@@ -27,14 +26,13 @@
         <h3>게시글 목록</h3>
         <div class="float-end">
   
-        <a href="/post/post_register.html" class="btn btn-primary">글쓰기</a>
+        <a href="../post/post_register.html" class="btn btn-primary">글쓰기</a>
 
         </div>
         <table class="table">
             <thead>
                 <th>ID</th>
                 <th>제목</th>
-                <!-- <th>글쓴이ID</th> -->
             </thead>
             <tbody id="tbodyId">
             </tbody>
@@ -42,16 +40,12 @@
     </div>
     <script>
         async function severData(){
-            // const result = await axios.get("https://jsonplaceholder.typicode.com/posts/");
-            // const result = await axios.get("http://localhost:8081/post/list");
-            const result = await axios.get("http://ec2-13-125-177-147.ap-northeast-2.compute.amazonaws.com:8081/post/list");
+            const result = await axios.get("http://localhost:8081/post/list");
             const postList = result.data;
             for(let i=0; i<postList.length; i++){
                 // document.getElementById("id").innerHTML=post[i].id;
                 // document.getElementById("title").innerHTML=post[i].title;
                 // document.getElementById("userId").innerHTML=post[i].userId;
-                // const html="<tr><td>" + postList[i].id + "</td>" +"<td>" + postList[i].title 
-                //     + "</td>"+"<td>" + postList[i].userId +"</td></tr>";
                 const html="<tr><td>" + postList[i].id + "</td>" +"<td>" + postList[i].title + "</td></tr>";
                 document.getElementById("tbodyId").innerHTML += html;
             }
@@ -69,7 +63,13 @@
 등록 
 1) 형식 3가지 () (프론트의 바디에)
 
-등록할때는 서버에서 형식에 맞는
+등록할때는 서버에서 형식에 맞는 코딩이 되어잇어야함.
 
 
+1. js로 데이터 조립
+ 1-1) json조립
+ 1-2) form형식 - url인코딩(또는 multipart/form-data)
+
+2.html로 데이터 조립
+ 2-1) form형식 - url인코딩(또는 multipart/form-data)
 -->
